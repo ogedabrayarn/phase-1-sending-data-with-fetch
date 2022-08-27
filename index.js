@@ -1,22 +1,38 @@
-function submitData(userName, email) {
-      const users = {
-            name: userName,
-            email: email
-      };
+// let name = 'Steve'
+// let email = 'steve@steve.com'
+// let apiJson = 'http://localhost:3000/users'
+// function submitData(userName, email) {
+// const users = {
+//       name: userName,
+//       email: email
+// }
+// fetch(apiJson, {
+//       method: 'POST',
+//       headers: {
+//             'Content-Type': 'application/json',
+//             'Accept': 'application/json'
+//       },
+//       body: JSON.stringify(users)
+// }) .then(res => res.json())
+// .then(data => console.log(data))
+// }
+// submitData()
+function submitData(userName,email){
       return fetch('http://localhost:3000/users', {
             method: 'POST',
-            headers: {
+            headers:{
                   'Content-Type': 'application/json',
+                  'Accept': 'application/json'
             },
-            body: JSON.stringify(users)
-      })
-            .then(res => res.json())
-            .then(data => {
-                  console.log(data);
+            body: JSON.stringify({
+                  name:userName,
+                  email: email
             })
-            .catch(message => {
-                  document.querySelector('p').innerHTML = message;
-            });
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err=>{
+            document.querySelector('div').innerHTML=err;
+      })
 
 }
-console.log(submitData('Samuel', 'sammysam@hotmail.com'))
